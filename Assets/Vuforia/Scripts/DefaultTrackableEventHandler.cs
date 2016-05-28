@@ -68,9 +68,6 @@ namespace Vuforia
 
         private void OnTrackingFound()
         {
-
-			SceneManager.GetInstance ().MarkerFound (gameObject);
-			/*
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
@@ -85,15 +82,13 @@ namespace Vuforia
             {
                 component.enabled = true;
             }
-			*/
+
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
 
 
         private void OnTrackingLost()
         {
-			SceneManager.GetInstance ().MarkerLost (gameObject);
-			/*
             Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
@@ -108,7 +103,7 @@ namespace Vuforia
             {
                 component.enabled = false;
             }
-			*/
+
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 

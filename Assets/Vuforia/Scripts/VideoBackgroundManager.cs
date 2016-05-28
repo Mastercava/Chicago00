@@ -33,7 +33,7 @@ namespace Vuforia
             {
                 if (mInstance == null)
                     mInstance = FindObjectOfType<VideoBackgroundManager>();
-
+				
                 return mInstance;
             }
         }

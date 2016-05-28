@@ -858,7 +858,6 @@ public class MapNav : MonoBehaviour
 		cam.position = tmp;
 	}
 
-	/*
 	//SAMPLE USER INTERFACE. MODIFY OR EXTEND IF NECESSARY =============================================================
 	void OnGUI () {
 		GUI.skin.box.alignment = TextAnchor.MiddleCenter;
@@ -1035,7 +1034,6 @@ public class MapNav : MonoBehaviour
 			GUI.EndGroup ();
 		}
 	}
-	*/
   
     //Translate decimal latitude to Degrees Minutes and Seconds
     string convertdmsLat(float lat) {
