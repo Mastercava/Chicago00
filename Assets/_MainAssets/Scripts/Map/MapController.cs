@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MapController : MonoBehaviour {
 
+	protected static MapController _instance;
+
 	public bool enableMap = false;
 	public bool showMap = false;
 	public bool showWorldMap = false;
@@ -14,6 +16,7 @@ public class MapController : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+		_instance = this;
 		mapCamera = GetComponentInChildren<Camera> ();
 		mapNav = GetComponentInChildren<MapNav> ();
 		worldMap = GetComponentInChildren<WorldMap> ();
@@ -21,9 +24,31 @@ public class MapController : MonoBehaviour {
 		EnableMap (false);
 	}
 
-	public void ToggleMap(bool state) {
-		mapCamera.enabled = state;
+	public static MapController instance {
+		get{ return _instance; }
 	}
+
+	/* INITIALIZATION */
+
+	public void LoadMap() {
+		enableMap = true;
+	}
+
+	/* SHOW AND HIDE MAP */
+
+	public void ShowMap() {
+		showMap = true;
+	}
+
+	public void HideMap () {
+		showMap = false;
+	}
+
+	public void ToggleMap() {
+		showMap = !showMap;
+	}
+
+	/* VISIBILITY */
 
 	public bool IsEnabled() {
 		return mapNav.gameObject.activeSelf;
@@ -33,7 +58,14 @@ public class MapController : MonoBehaviour {
 		return mapCamera.enabled;
 	}
 
-	public void EnableMap(bool state) {
+
+	/* PROTECTED */
+
+	protected void ToggleMap(bool state) {
+		mapCamera.enabled = state;
+	}
+
+	protected void EnableMap(bool state) {
 		foreach (Transform child in transform) {
 			child.gameObject.SetActive (state);
 		}
