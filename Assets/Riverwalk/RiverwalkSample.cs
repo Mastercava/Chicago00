@@ -20,7 +20,7 @@ public class RiverwalkSample : MonoBehaviour {
 		cameraController.setDefaultCameraBehavior ();
 
 		//Full screen panorama mode (from Resources/Panos)
-		uiController.OpenPanoramaMode("DarkSkies");
+		uiController.OpenPanoramaMode("S_RiverWalk");
 
 		//Set Helper panorama
 		uiController.SetHelperPanorama("Darkskies");
@@ -33,6 +33,11 @@ public class RiverwalkSample : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+		//Tell user to activate location if disabled
+		if (!cameraController.IsGPSEnabled ()) {
+			uiController.setStreetLabel ("Please turn on your location services for a better experience");
+		}
+
 		//Wait for GPS signal to activate
 		if (cameraController.GetGpsStatus() != LocationServiceStatus.Running) {
 			return;
@@ -40,6 +45,16 @@ public class RiverwalkSample : MonoBehaviour {
 
 		//User is in the right place (e.g. 200m of radius)
 		if (cameraController.IsWithinArea (41.887471d, -87.631765d, 200f)) {
+
+			//Load minimap based on location with IsWithinArea or DistanceToLocation ...
+
+			uiController.setStreetLabel ("Yay! You arrived to Chicago RiverWalk, let's have a look around");
+
+			if(cameraController.IsFiducialAvailable()) {
+				GameObject fiducial = cameraController.GetCurrentFiducial ();
+				uiController.setStreetLabel ("You are currently tracking fiducial '" + fiducial.name + "'");
+			}
+
 
 		} 
 		//User in the wrong place, tell him to go to the riverwalk

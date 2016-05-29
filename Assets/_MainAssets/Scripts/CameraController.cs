@@ -92,6 +92,11 @@ public class CameraController : MonoBehaviour {
 	}
 
 
+	//Returns true is the user has enabled GPS
+	public bool IsGPSEnabled() {
+		return Input.location.isEnabledByUser;
+	}
+
 	//Returns lat and lng obtainerd through the GPS
 	public Vector2 GetGpsPosition() {
 		return sensorCamera.GetRawGeolocation ();
